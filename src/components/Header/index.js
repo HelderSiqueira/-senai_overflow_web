@@ -1,4 +1,4 @@
-import {Container, IconSignOut} from "./styles";
+import { Container, IconSignOut } from "./styles";
 import imgLogo from "../../assets/logo.jpg";
 
 function Header(){
