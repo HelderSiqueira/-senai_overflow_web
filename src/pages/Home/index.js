@@ -4,14 +4,28 @@ import { FeedContainer, GistIcon, Main, Post, TitleContainer } from "./styles";
 
 function Home() {
 
-    const posts = [
-        {
-            titulo: "Este é o nome do usúario 1", descricao: "Esta é a descrição 1"
+    const posts = [{
+        author: {
+            name: "Fulano",
         },
-        {
-            titulo: "Este é o nome do usúario 2", descricao: "Esta é a descrição 2"
-        },
-    ];
+        created_at: "23/08/2021",
+        title: "Este é um post sobre JS",
+        description: "JS é uma linguagem de programação muito top",
+        image: "https://img.elo7.com.br/product/original/21F8224/paisagem-pintura-em-tela-pantanal-pintura-paisagem-oleo-sobre-tela.jpg",
+        gist: "https://github.com.br/",
+        categories: [
+            "JS", "Back-end", "Express"
+        ],
+        comments: [
+            {
+                author: {
+                    name: "Ciclano",
+                },
+                created_at: "23/08/2021",
+                description: "Realmente JS é muito top"
+            }
+        ]
+    }]
 
     return (
         <>
@@ -31,36 +45,34 @@ function Home() {
     );
 }
 
-function PostCard(props) {
+function PostCard({post}) {
     return (
         <Post>
             <header>
                 <img src="https://cdn4.iconfinder.com/data/icons/glyphs/24/icons_user2-512.png" />
                 <div>
                     <strong>
-                        {props.post.titulo}
+                        por {post.author.name}
                     </strong>
                     <p>
-                        {props.post.descricao}
+                        {post.created_at}
                     </p>
                 </div>
-                <GistIcon />
+                {post.gist && <GistIcon/>}
             </header>
             <main>
                 <div>
-                    <h1>Título</h1>
-                    <p>Descrição da postagem bla bla bla</p>
+                    <h1>{post.title}</h1>
+                    <p>{post.description}</p>
                 </div>
-                <img src="https://img.elo7.com.br/product/original/21F8224/paisagem-pintura-em-tela-pantanal-pintura-paisagem-oleo-sobre-tela.jpg" />
+                <img src={post.image}/>
                 <section>
-                    <p>Front-End</p>
-                    <p>CSS</p>
-                    <p>JS</p>
+                    {post.categories.map(category => <p>{category}</p>)}
                 </section>
             </main>
             <footer>
                 <h2>Comentários</h2>
-                <Coments />
+                {post.comments.map(coment => <Coments coment={coment}/>)}
             </footer>
         </Post>
     );

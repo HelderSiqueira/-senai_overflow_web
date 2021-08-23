@@ -1,18 +1,19 @@
+import { createPortal } from "react-dom";
 import { Container } from "./styles";
 
-function Coments() {
+function Coments({coment}) {
     return (
         <Container>
             <header>
                 <img src="https://cdn4.iconfinder.com/data/icons/glyphs/24/icons_user2-512.png" />
                 <strong>
-                    Por Fulano De Tal
+                    Por {coment.author.name}
                 </strong>
                 <p>
-                    em 18/08/2021 às 08:47
+                    em {coment.created_at} ás 08:51
                 </p>
             </header>
-            <p>Este é o comentário</p>
+            <p>{coment.description}</p>
         </Container>
     );
 }
